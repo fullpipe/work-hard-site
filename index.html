@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>Work hard</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="theme-color" content="#fafafa" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather:400,400i&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+        font-family: "Jomolhari", serif;
+        font-size: 21px;
+      }
+      .quote {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        padding: 100px;
+        box-sizing: border-box;
+      }
+      .text {
+        font-style: italic;
+        line-height: 30px;
+        margin-bottom: 30px;
+      }
+      .author {
+        text-align: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="quote">
+      <div class="text"></div>
+      <p class="author"></p>
+    </div>
+  </body>
+  <script>
+    var quotes = [
+      {
+        text:
+          "The successful warrior is the average man, with laser-like focus.",
+        author: "Bruce Lee"
+      }
+    ];
+
+    window.addEventListener("DOMContentLoaded", event => {
+      var text = document.querySelector(".text");
+      var author = document.querySelector(".author");
+      var quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+      text.innerText = quote.text;
+      author.innerText = "~ " + quote.author;
+    });
+  </script>
+</html>
