@@ -16,6 +16,7 @@ spec:
       containers:
       - name: work-hard
         image: fullpipe/work-hard-site:latest
+        imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
@@ -36,7 +37,7 @@ metadata:
   name: work-hard
   annotations:
     kubernetes.io/ingress.class: "traefik"
-
+    traefik.ingress.kubernetes.io/redirect-entry-point: http
 spec:
   rules:
   - http:
