@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: work-hard
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: work-hard
+  template:
+    metadata:
+      labels:
+        app: work-hard
+    spec:
+      containers:
+      - name: work-hard
+        image: fullpipe/work-hard-site:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: work-hard
+  namespace: default
+spec:
+  ports:
+  - name: http
+    targetPort: 80
+    port: 80
+  selector:
+    app: work-hard
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: work-hard
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: work-hard
+          servicePort: 80
